@@ -1,7 +1,7 @@
 const http = require('http');
 
 const parseCookies = (cookie = '') => {
-    cookie
+   return cookie
     .split(';')
     .map(v => v.split('='))
     .map(([k, ...vs]) => [k, vs.join('=')])
@@ -13,9 +13,8 @@ const parseCookies = (cookie = '') => {
 
 http.createServer((req,res) => {
     const cookies = parseCookies(req.headers.cookie);
-    console.log("req.headers.cookie : ", req.headers.cookie);
-    console.log("req.url : ", req.url);
-    console.log("cookies : ", cookies);
+    console.log(req.url, cookies);
+ 
     res.writeHead(200, { 'Set-Cookie' : 'mycookie=test'});
     res.end('Hello Cookie');
 })
